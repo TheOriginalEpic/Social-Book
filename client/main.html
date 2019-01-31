@@ -1,25 +1,44 @@
 <head>
-  <title>socialBook</title>
+	<title>socialBook</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+	<div class="container">
+		 {{> description}}
 
-  {{> hello}}
-  {{> info}}
+		<!--  {{> hello}}
+		{{> info}} -->
+	</div>
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="description">
+	<h1 class="text-center">Social Book</h1>
+		
+		<div class="row justify-content-around">
+			<div class="col-6">
+				<img src="Undertale 2.jpg" alt="">
+
+				<h1 class="text-center">Flowey Undertale Final Boss</h1>
+			</div>
+		</div>
+			
+			<div class="row justify-content-center">
+				<div class="col-4 text-center">
+					<button class="btn btn-primary js-like">Like</button>
+				</div>
+
+				<div class="col-4 text-center">
+					<button class="btn btn-danger js-dislike">Dislike</button>
+				</div>
+			</div>
 </template>
 
 <template name="info">
-  <h2>Learn Meteor!</h2>
-  <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-  </ul>
+	<h2>Learn Meteor!</h2>
+	<ul>
+		<li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
+		<li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
+		<li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
+		<li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
+	</ul>
 </template>
