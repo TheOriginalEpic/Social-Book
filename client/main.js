@@ -4,6 +4,12 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import './main.html';
 import '../lib/collections.js';
 
+Template.description.helpers({
+	descfName(){
+		return userDB.findOne({}).firstName;
+	},
+});
+
 Template.description.events({
 	'click .js-like'(event, instance) {
     	console.log("You clicked like");
@@ -21,6 +27,14 @@ Template.addUser.events({
 		console.log("Name: ", fName, lName);
 		console.log("Picture: ", image);
 
+		$('#addUser input[name="firstName"]').val('');
+		$('#addUser input[name="lastName"]').val('');
+		$('#addUser input[name="imageURL"]').val('');
+
 		$('#addUser').modal('hide');
+
+		userDB.insert({'firstName':fName, 'lastName':lName, 'img':image});
+
+
 	},
 });
