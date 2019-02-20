@@ -7,24 +7,34 @@
 		<h1 class="text-center display-1">Social Book</h1>
 
 		{{> addUser}}
-		{{> description}}
-			
+
+		<div class="row justify-content-around">
+			{{> description}}
+		</div>
 		<!-- {{> info}} -->
 	</div>
 </body>
 
 <template name="description">
+	{{#each descAll}}
+	<div class="col-4">
+
+		<div class="row justify-content-end">
+			<div class="col-1">
+				<i id={{_id}} class="zmdi zmdi-delete js-delete"></i>
+			</div>
+		</div>
 
 		<div class="row justify-content-around">
-			<div class="col-6">
-				<img src="Undertale 2.jpg" alt="">
-
-				<h1 class="text-center">{{descfName}}</h1>
+			<div class="col-sm-12">
+				<img src="{{img}}" alt="">
+				
+				<h1 class="text-center">{{firstName}} &nbsp; {{lastName}}</h1>
 			</div>
 		</div>
 			
-			<div class="row justify-content-center">
-				<div class="col-4 text-center">
+			<div class="row justify-content-center button-spacing">
+				<div class="col-sm-4 text-center">
 					<button class="btn btn-primary js-like">Like</button>
 				</div>
 
@@ -32,6 +42,8 @@
 					<button class="btn btn-danger js-dislike">Dislike</button>
 				</div>
 			</div>
+		</div>
+		{{/each}}
 </template>
 
 
@@ -55,7 +67,7 @@
 							</button>
 						</div>
 						<div class="modal-body">
-
+						
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
 									<span class="input-group-text" id="basic-addon1">Image URL</span>
