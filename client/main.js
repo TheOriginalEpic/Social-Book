@@ -11,12 +11,32 @@ Template.description.helpers({
 });
 
 Template.description.events({
-	'click .js-like'(event, instance){
-    	console.log("You clicked like");
+	'click .js-like'(event, instance){				
+		var descID = this._id;
+		var count = userDB.findOne({_id: descID}).like;					
+
+		if (!count){
+			count = 0;
+		}
+
+		count++;
+
+		userDB.update({_id: descID}, {$set:{'like':count}});
 	},
+
 	'click .js-dislike'(event, instance){
-		console.log("You clicked dislike");
-	},	
+		var descID = this._id;
+		var count = userDB.findOne({_id: descID}).dislike;				
+
+		if (!count){
+			count = 0;
+		}
+
+		count++;
+
+		userDB.update({_id: descID}, {$set:{'dislike':count}});		
+	},
+
 	'click .js-delete'(event, instane){
 		var descID = this._id;
 
@@ -31,10 +51,11 @@ Template.addUser.events({
 		var fName = $('#addUser input[name="firstName"]').val();
 		var lName = $('#addUser input[name="lastName"]').val();
 		var image = $('#addUser input[name="imageURL"]').val();
-		console.log(image);
+
 		if (image==""){
 			image="Undertale 2.jpg";
 		}
+
 		console.log("Name: ", fName, lName);
 		console.log("Picture: ", image);
 
@@ -47,3 +68,4 @@ Template.addUser.events({
 		userDB.insert({'firstName':fName, 'lastName':lName, 'img':image});
 	},
 });
+
