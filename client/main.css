@@ -8,13 +8,26 @@ img {
 }
 
 .button-spacing {
-	padding: 2em;
+	padding: 1em;
 }
 
-.js.dislike {
-	padding: 2em;
+#dislikeText {
+	margin: 0.5em -1em 0 -1em;
 }
 
-.js.like {
-	padding: 2em;
+#likeText {
+	margin: 0.5em -1em 0 -1em;
+}
+
+#edit, .editing {
+	background-color: transparent;
+	border: none;
+}
+
+#edit:hover, .editing:hover {
+	cursor: pointer;
+}
+
+button#edit:focus, button.editing:focus {
+	outline: none;
 }

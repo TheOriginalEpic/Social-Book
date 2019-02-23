@@ -10,44 +10,60 @@ Template.description.helpers({
 	},
 });
 
+Template.editUser.helpers({
+	editAll(){
+		return userDB.find({});
+	},
+});
+
 Template.description.events({
 	'click .js-like'(event, instance){				
 		var descID = this._id;
 		var count = userDB.findOne({_id: descID}).like;					
+		var oneLike = 'Likes';
+		var add;
 
 		if (!count){
 			count = 0;
-		}
+			add = 0;
+		}	
 
 		count++;
+		add++;
 
-		userDB.update({_id: descID}, {$set:{'like':count}});
+		if (add == 1){
+			oneLike ='Like';
+		}		
+
+		userDB.update({_id: descID}, {$set:{'like':count, 'text2': oneLike}});
 	},
 
 	'click .js-dislike'(event, instance){
 		var descID = this._id;
-		var count = userDB.findOne({_id: descID}).dislike;				
+		var count = userDB.findOne({_id: descID}).dislike;
+		var oneDislike = 'Dislikes';
+		var add;
+
+		console.log(descID);
 
 		if (!count){
 			count = 0;
-		}
+			add = 0;
+		}	
 
 		count++;
+		add++;
 
-		userDB.update({_id: descID}, {$set:{'dislike':count}});		
-	},
+		if (add == 1){
+			oneDislike ='Dislike';
+		}		
 
-	'click .js-delete'(event, instane){
-		var descID = this._id;
-
-		$("#" + descID).fadeOut("slow", "swing", function () {
-			userDB.remove({_id: descID});
-		});
+		userDB.update({_id: descID}, {$set:{'dislike':count, 'text': oneDislike}});
 	},
 });
 
 Template.addUser.events({
-	'click .js-save'(event, instance) {
+	'click .js-save'(event, instance){
 		var fName = $('#addUser input[name="firstName"]').val();
 		var lName = $('#addUser input[name="lastName"]').val();
 		var image = $('#addUser input[name="imageURL"]').val();
@@ -66,6 +82,33 @@ Template.addUser.events({
 		$('#addUser').modal('hide');
 
 		userDB.insert({'firstName':fName, 'lastName':lName, 'img':image});
+	},
+});
+
+Template.editUser.events({
+	'click .js-delete'(event, instance){
+		var descID = this._id;
+
+		$('#editUser').modal('hide');
+
+		$("#" + descID).fadeOut("slow", "swing", function(){
+			userDB.remove({_id: descID});
+		});
+	},
+
+	'click .js-edit'(event, instance){
+		var descID = this._id;
+
+		var fName = $('#addUser input[name="EfirstName"]').val();
+		var lName = $('#addUser input[name="ElastName"]').val();
+		var image = $('#addUser input[name="EimageURL"]').val();
+
+		
+
+	},
+
+	'click .js-close'(event, instance){
+		$('#editing').modal('hide');
 	},
 });
 
