@@ -3,7 +3,9 @@
 </head>
 
 <body>
-	<div class="container">
+	<div class="Background"></div>
+	<div class="container-fluid">
+
 		<h1 class="text-center display-1">Social Book</h1>
 
 		{{> addUser}}
@@ -11,11 +13,12 @@
 		<div class="row justify-content-around">
 			{{> description}}
 		</div>
-		
+			
 		{{> editUser}}
 
 		<!-- {{> info}} -->
 	</div>
+	<div class="Background"></div>
 </body>
 
 
@@ -23,12 +26,12 @@
 	{{#each descAll}}
 	<div class="col-4">	
 
-		<button id="edit" type="button" data-toggle="modal" data-target="#editUser">
+		<button class="edit" type="button" data-toggle="modal" data-target="#editUser">
 			<div class="row justify-content-around">
 				<div class="col-sm-12">
-					<img src="{{img}}" alt="">
+					<img clas="profileImage" src="{{img}}" alt="">
 					
-					<h1 class="text-center">{{firstName}} &nbsp; {{lastName}}</h1>
+					<h1 class="text-center defaultColor">{{firstName}} &nbsp; {{lastName}}</h1>
 				</div>
 			</div>
 		</button>
@@ -63,10 +66,10 @@
 			<!-- Modal -->
 			<div class="modal fade" id="addUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
-					<div class="modal-content">
+					<div class="modal-content text-light bg-dark">
 						<div class="modal-header">
 							<h5 class="modal-title" id="exampleModalLabel">Enter Information</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
@@ -74,7 +77,7 @@
 						
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
-									<span class="input-group-text" id="basic-addon1">Image URL</span>
+									<span class="input-group-text" id="basic-addon1">Background Image</span>
 								</div>
 								<input type="text" name="imageURL" class="form-control" placeholder="https://i.kym-cdn.com/entries/icons/original/000/000/091/TrollFace.jpg" aria-label="imageURL" aria-describedby="basic-addon1"><br />
 
@@ -105,42 +108,58 @@
 </template>
 
 <template name="editUser">
-	{{#each editAll}}
 	<div class="modal fade bd-example-modal-lg" id="editUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-	    <div class="modal-content">
+	    <div class="modal-content text-light bg-dark">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLongTitle">User Profile</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
 	      <div class="modal-body">
 
-		     	<div class="row justify-content-end">
-			   		<div class="col">
+		     	<div class="row d-flex justify-content-end">
+			   		<div id="col-sm-2" class="col-sm-2">
 
-			   		<button type="button" class="editing" data-toggle="modal" data-target="#editing">
-					  	<i id={{_id}} class="zmdi zmdi-edit js-edit"></i>
-						</button>	   			
-			   			
+				   		<button type="button" class="editing" data-toggle="modal" data-target="#editing">
+						  	<i id={{_id}} class="zmdi zmdi-edit js-edit"></i>
+						  	<p id={{_id}} class="editText js-edit">Edit</p>
+							</button>   			
+			   		</div>
+
+			   		<div class="col-auto delete">
 			   			<i id={{_id}} class="zmdi zmdi-delete js-delete"></i>
+			   			<p id={{_id}} class="js-delete deleteText">Delete</p>
 			   		</div>
 			   	</div>
 
 		     	<div class="row">
-		     		<div class="col">
-			        <img src="{{img}}" alt="">
+		     		<div class="col-7">
+			        <img class="backImg" src="{{img}}" alt="">
+
+			        <img class="profileImage" src="Big-T.png" alt="">
+			      </div>
+
+			      <div class="col">
+							<h1 class="centered display-4">{{firstName}} &nbsp; {{lastName}}</h1>
+
+						<div style="margin-left: 3.5em;">
+			      	<p>{{text2}}: {{like}}</p>
+			      	<p>{{text}}: {{dislike}}</p>
+			      </div>
 			      </div>
 			    </div>
+
+					
 
 					<!-- Modal -->
 					<div class="modal fade" id="editing" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
-					    <div class="modal-content">
+					    <div class="modal-content text-light bg-dark">
 					      <div class="modal-header">
-					        <h5 class="modal-title" id="exampleModalLabel">Edit Profile Informatatin</h5>
-					        <button type="button" class="js-close close" aria-label="Close">
+					        <h5 class="modal-title" id="exampleModalLabel">Edit Profile Information</h5>
+					        <button type="button" class="js-close close text-light" aria-label="Close">
 					          <span aria-hidden="true">&times;</span>
 					        </button>
 					      </div>
@@ -148,9 +167,18 @@
 
 					        <div class="input-group mb-3">
 										<div class="input-group-prepend">
-											<span class="input-group-text" id="basic-addon1">Image URL</span>
+											<span class="input-group-text" id="basic-addon1">Background Image</span>
 										</div>
-										<input type="text" name="EimageURL" class="form-control" placeholder="https://i.kym-cdn.com/entries/icons/original/000/000/091/TrollFace.jpg" aria-label="EimageURL" aria-describedby="basic-addon1"><br />
+										<input type="text" name="eImageURL" class="form-control" placeholder="https://i.kym-cdn.com/entries/icons/original/000/000/091/TrollFace.jpg" aria-label="eImageURL" aria-describedby="basic-addon1"><br />
+
+										<input type="file" class="form-control-file" id="exampleFormControlFile1">
+									</div>
+
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text" id="basic-addon1">Profile Image</span>
+										</div>
+										<input type="text" name="eProfileImg" class="form-control" placeholder="https://i.kym-cdn.com/entries/icons/original/000/000/091/TrollFace.jpg" aria-label="eProfileImg" aria-describedby="basic-addon1"><br />
 
 										<input type="file" class="form-control-file" id="exampleFormControlFile1">
 									</div>
@@ -159,19 +187,19 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon1">First Name</span>
 										</div>
-										<input type="text" name="EfirstName" class="form-control" placeholder="John" aria-label="firstName" aria-describedby="basic-addon1">
+										<input type="text" name="eFirstName" class="form-control" placeholder="John" aria-label="firstName" aria-describedby="basic-addon1">
 									</div>
 
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon1">Last Name</span>
 										</div>
-										<input type="text" name="ElastName" class="form-control" placeholder="Smith" aria-label="lastName" aria-describedby="basic-addon1">
+										<input type="text" name="eLastName" class="form-control" placeholder="Smith" aria-label="lastName" aria-describedby="basic-addon1">
 									</div>
 					      </div>
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-secondary js-close">Close</button>
-					        <button type="button" class="btn btn-primary js-save">Save changes</button>
+					        <button type="button" class="btn btn-primary js-saveEdit">Save changes</button>
 					      </div>
 					    </div>
 					  </div>
@@ -184,7 +212,6 @@
 	    </div>
 	  </div>
 	</div>
-	{{/each}}
 </template>
 
 

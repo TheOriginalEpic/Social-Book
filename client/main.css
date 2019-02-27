@@ -1,15 +1,107 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:700|Montserrat|Muli');
+
+body, html {
+	height: 100%;
+}
+
 body {
-  padding: 10px;
-  font-family: sans-serif;
+	font-family: sans-serif;
+  	color: #CBD1CF;  
 }
 
 img {
 	width: 100%;
 }
 
+.container-fluid{
+	background-color: #252626;
+}
+
+.Background {
+	background-image: url(Fog.jpg);
+	background-attachment: fixed;
+  	background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+    height: 40%;
+}
+
 .button-spacing {
 	padding: 1em;
 }
+
+img.backImg {
+	border-radius: 10px;
+}
+
+img.profileImage {
+	position: absolute;
+	width: 20%;
+	left: 0.91em;
+	border: 2px rgba(66, 240, 228, 0.3) solid;
+	border-radius: 10px;
+}
+
+.defaultColor {
+	color: #CBD1CF;
+}
+
+.editing {
+	color: white;
+}
+
+.js-delete {
+	font-weight: normal;
+	font-style: normal;
+	display: inline-block;
+}
+
+.delete {
+
+}
+
+.delete:hover {
+	cursor: pointer;
+}
+
+.js-edit {
+	font-weight: normal;
+	font-style: normal;
+	display: inline-block;
+}
+
+	.js-edit:hover {
+	
+	}
+
+.deleteText {
+	font-family: 'Lato', sans-serif;
+}
+
+.editText {
+	font-family: 'Lato', sans-serif;
+}
+
+.centered {
+	text-align: center;
+}
+
+.edit, .editing {
+	background-color: transparent;
+	border: none;
+	transition: opacity 2s;
+	transition-timing-function: ease-out;
+}
+
+	.edit:hover, .editing:hover {
+		cursor: pointer;
+		opacity: 0.4;
+	}
+
+	button.edit:focus, button.editing:focus {
+		outline: none;
+	}
+
 
 #dislikeText {
 	margin: 0.5em -1em 0 -1em;
@@ -19,15 +111,7 @@ img {
 	margin: 0.5em -1em 0 -1em;
 }
 
-#edit, .editing {
-	background-color: transparent;
-	border: none;
-}
-
-#edit:hover, .editing:hover {
-	cursor: pointer;
-}
-
-button#edit:focus, button.editing:focus {
-	outline: none;
+#col-sm-2 {
+	margin-right: -4em;
+	padding-right: 0;
 }

@@ -10,11 +10,11 @@ Template.description.helpers({
 	},
 });
 
-Template.editUser.helpers({
-	editAll(){
-		return userDB.find({});
-	},
-});
+// Template.editUser.helpers({
+// 	editAll(){
+// 		return userDB.find({});
+// 	},
+// });
 
 Template.description.events({
 	'click .js-like'(event, instance){				
@@ -44,8 +44,6 @@ Template.description.events({
 		var oneDislike = 'Dislikes';
 		var add;
 
-		console.log(descID);
-
 		if (!count){
 			count = 0;
 			add = 0;
@@ -60,20 +58,21 @@ Template.description.events({
 
 		userDB.update({_id: descID}, {$set:{'dislike':count, 'text': oneDislike}});
 	},
+
+	'click #edit'(event, instance) {
+		
+	},
 });
 
 Template.addUser.events({
 	'click .js-save'(event, instance){
 		var fName = $('#addUser input[name="firstName"]').val();
 		var lName = $('#addUser input[name="lastName"]').val();
-		var image = $('#addUser input[name="imageURL"]').val();
+		var image = $('#addUser input[name="imageURL"]').val();			
 
-		if (image==""){
-			image="Undertale 2.jpg";
+		if (image == ""){
+			image = "Undertale 2.jpg";
 		}
-
-		console.log("Name: ", fName, lName);
-		console.log("Picture: ", image);
 
 		$('#addUser input[name="firstName"]').val('');
 		$('#addUser input[name="lastName"]').val('');
@@ -81,7 +80,9 @@ Template.addUser.events({
 
 		$('#addUser').modal('hide');
 
-		userDB.insert({'firstName':fName, 'lastName':lName, 'img':image});
+		userDB.insert({'firstName':fName, 'lastName':lName, 'img':image,});
+
+
 	},
 });
 
@@ -97,13 +98,11 @@ Template.editUser.events({
 	},
 
 	'click .js-edit'(event, instance){
-		var descID = this._id;
+		$('#editing').modal('handleUpdate');
 
-		var fName = $('#addUser input[name="EfirstName"]').val();
-		var lName = $('#addUser input[name="ElastName"]').val();
-		var image = $('#addUser input[name="EimageURL"]').val();
+	},
 
-		
+	'click .js-saveEdit'(event, instance){
 
 	},
 
