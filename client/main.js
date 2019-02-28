@@ -69,10 +69,27 @@ Template.description.events({
 
 	'click .edit'(event, instance){
 		var userId = this._id;
+		var likeCount = userDB.findOne({_id:userId}).like;
+		var disCount = userDB.findOne({_id:userId}).dislike
 		console.log(userId);
 
 		$('#uId').val(userId);
 		$('#backImg').attr('src',userDB.findOne({_id:userId}).img);
+		$('#first').text(userDB.findOne({_id:userId}).firstName);
+		$('#last').text(userDB.findOne({_id:userId}).lastName);
+
+		if (likeCount == 1){
+			$('#like').text("Like " + likeCount);
+		} else {
+			$('#like').text("Likes " + likeCount);
+		}
+		
+		if (disCount == 1){
+			$('#dislike').text("Dislike " + disCount);
+		} else {
+			$('#dislike').text("Dislikes " + disCount);
+		}		
+
 		$('#userImg').attr('src',userDB.findOne({_id:userId}).prof);				
 	},
 });
@@ -115,10 +132,10 @@ Template.editUser.events({
 	},
 
 	'click .js-edit'(event, instance){
-		// var efName = $('#editing input[name="eFirstName"]').val();
-		// var elName = $('#editing input[name="eLastName"]').val();
-		// var eImage = $('#editing input[name="eImageURL"]').val();
-		// var profileImg = $('#editing input[name="eProfileImg"]').val();
+		// var fName = $('#addUser input[name="firstName"]').val();
+		// var lName = $('#addUser input[name="lastName"]').val();
+		// var image = $('#addUser input[name="imageURL"]').val();
+		// var profileImg = $('#addUser input[name="profileImg"]').val();
 
 		$('#editing').modal('handleUpdate');
 

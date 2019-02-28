@@ -29,7 +29,7 @@
 		<button class="edit" type="button" data-toggle="modal" data-target="#editUser">
 			<div class="row justify-content-around">
 				<div class="col-sm-12">
-					<img clas="profileImage" src="{{img}}" alt="">
+					<img class="backImg" src="{{img}}" alt="">
 					
 					<h1 class="text-center defaultColor">{{firstName}} &nbsp; {{lastName}}</h1>
 				</div>
@@ -157,10 +157,14 @@
 			      </div>
 
 			      <div class="col">
-							<h1 class="centered display-4">{{firstName}} &nbsp; {{lastName}}</h1>
+							<h1 id="first" class="centered">{{firstName}} &nbsp; </h1>
+							<h1 id="last" class="centered">{{lastName}}</h1>
 
 						<div style="margin-left: 3.5em;">
-			      	{{#if isLikeSingle}}
+							<p id="like"></p>
+							<p id="dislike"></p>
+
+			      	<!-- {{#if isLikeSingle}}
 				      	<p id="like">Like: {{like}}</p>
 			      	{{else}}
 				      	<p id="like">Likes: {{like}}</p>
@@ -170,7 +174,7 @@
 				      	<p id="dislike">Dislike: {{dislike}}</p>
 			      	{{else}}
 				      	<p id="dislike">Dislikes: {{dislike}}</p>
-			      	{{/if}}
+			      	{{/if}} -->
 			      </div>
 			      </div>
 			    </div>				
