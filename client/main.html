@@ -40,13 +40,24 @@
 				<div class="col-sm-4 text-center">
 					<button class="btn btn-primary js-like">Like</button>
 					
-						<h6 id="likeText">{{like}} {{text2}}</h6>
+						<!-- <h6 id="likeText">{{like}} {{text2}}</h6> -->
+						{{#if isLikeSingle like}}				      	
+				      	<h6 id="likeText">{{like}} Like</h6>
+			      	{{else}}
+				      	<h6 id="likeText">{{like}} Likes</h6>
+			      	{{/if}}
+			      	
 				</div>
 
 				<div class="col-4 text-center">
 					<button class="btn btn-danger js-dislike">Dislike</button>
 						
-					<h6 id="dislikeText">{{dislike}} {{text}}</h6>
+					<!-- <h6 id="dislikeText">{{dislike}} {{text}}</h6> -->
+					{{#if isDislikeSingle dislike}}
+				      	<h6 id="dislikeText">{{dislike}} Dislike</h6>
+			      	{{else}}
+				      	<h6 id="dislikeText">{{dislike}} Dislikes</h6>
+			      	{{/if}}
 				</div>
 			</div>
 		</div>
@@ -81,7 +92,7 @@
 								</div>
 								<input type="text" name="imageURL" class="form-control" placeholder="https://i.kym-cdn.com/entries/icons/original/000/000/091/TrollFace.jpg" aria-label="imageURL" aria-describedby="basic-addon1"><br />
 
-								<input type="file" class="form-control-file" id="exampleFormControlFile1">
+								<input type="file" name="imageURL" class="form-control-file" id="exampleFormControlFile1">
 							</div>
 
 							<div class="input-group mb-3">
@@ -97,6 +108,9 @@
 								</div>
 								<input type="text" name="lastName" class="form-control" placeholder="Smith" aria-label="lastName" aria-describedby="basic-addon1">
 							</div>
+							
+							<input type="hidden" name="profileImg">
+
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -119,41 +133,57 @@
 	      </div>
 	      <div class="modal-body">
 
+					<input id="uId" type="hidden">
+
 		     	<div class="row d-flex justify-content-end">
 			   		<div id="col-sm-2" class="col-sm-2">
 
 				   		<button type="button" class="editing" data-toggle="modal" data-target="#editing">
-						  	<i id={{_id}} class="zmdi zmdi-edit js-edit"></i>
-						  	<p id={{_id}} class="editText js-edit">Edit</p>
+						  	<i class="zmdi zmdi-edit js-edit"><span class="editText">Edit</span></i>
 							</button>   			
 			   		</div>
 
 			   		<div class="col-auto delete">
-			   			<i id={{_id}} class="zmdi zmdi-delete js-delete"></i>
-			   			<p id={{_id}} class="js-delete deleteText">Delete</p>
+			   			<i class="zmdi zmdi-delete js-delete"><span class="deleteText">Delete</span></i>
+			   			
 			   		</div>
 			   	</div>
 
 		     	<div class="row">
 		     		<div class="col-7">
-			        <img class="backImg" src="{{img}}" alt="">
+			        <img class="backImg" id="backImg" src="{{img}}" alt="">
 
-			        <img class="profileImage" src="Big-T.png" alt="">
+			        <img class="profileImage" id="userImg" src="{{prof}}" alt="">
 			      </div>
 
 			      <div class="col">
 							<h1 class="centered display-4">{{firstName}} &nbsp; {{lastName}}</h1>
 
 						<div style="margin-left: 3.5em;">
-			      	<p>{{text2}}: {{like}}</p>
-			      	<p>{{text}}: {{dislike}}</p>
+			      	{{#if isLikeSingle}}
+				      	<p id="like">Like: {{like}}</p>
+			      	{{else}}
+				      	<p id="like">Likes: {{like}}</p>
+			      	{{/if}}
+
+			      	{{#if isDislikeSingle}}
+				      	<p id="dislike">Dislike: {{dislike}}</p>
+			      	{{else}}
+				      	<p id="dislike">Dislikes: {{dislike}}</p>
+			      	{{/if}}
 			      </div>
 			      </div>
-			    </div>
+			    </div>				
+		   	</div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
-					
-
-					<!-- Modal -->
+	<!-- Modal -->
 					<div class="modal fade" id="editing" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content text-light bg-dark">
@@ -171,16 +201,16 @@
 										</div>
 										<input type="text" name="eImageURL" class="form-control" placeholder="https://i.kym-cdn.com/entries/icons/original/000/000/091/TrollFace.jpg" aria-label="eImageURL" aria-describedby="basic-addon1"><br />
 
-										<input type="file" class="form-control-file" id="exampleFormControlFile1">
+										<input name="eImageURL" type="file" class="form-control-file" id="exampleFormControlFile1">
 									</div>
 
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon1">Profile Image</span>
 										</div>
-										<input type="text" name="eProfileImg" class="form-control" placeholder="https://i.kym-cdn.com/entries/icons/original/000/000/091/TrollFace.jpg" aria-label="eProfileImg" aria-describedby="basic-addon1"><br />
+										<input type="text" name="profileImg" class="form-control" placeholder="https://i.kym-cdn.com/entries/icons/original/000/000/091/TrollFace.jpg" aria-label="profileImg" aria-describedby="basic-addon1"><br />
 
-										<input type="file" class="form-control-file" id="exampleFormControlFile1">
+										<input name="profileImg" type="file" class="form-control-file" id="exampleFormControlFile1">
 									</div>
 
 									<div class="input-group mb-3">
@@ -204,14 +234,6 @@
 					    </div>
 					  </div>
 					</div>
-		   	</div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Save changes</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
 </template>
 
 
