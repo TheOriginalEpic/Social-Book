@@ -56,22 +56,21 @@ img.profileImage {
 	display: inline-block;
 }
 
-.delete {
-
-}
-
-.delete:hover {
-	cursor: pointer;
-}
+	.js-delete:hover{
+		cursor: pointer;
+	}
 
 .js-edit {
 	font-weight: normal;
 	font-style: normal;
 	display: inline-block;
+	transition: opacity 2s;
+	transition-timing-function: ease-out;
 }
 
 	.js-edit:hover {
-	
+		cursor: pointer;
+		opacity: 0.4;
 	}
 
 .deleteText {
@@ -88,20 +87,14 @@ img.profileImage {
 	text-align: center;
 }
 
-.edit, .editing {
-	background-color: transparent;
-	border: none;
+.edit {
 	transition: opacity 2s;
 	transition-timing-function: ease-out;
 }
 
-	.edit:hover, .editing:hover {
+	.edit:hover {
 		cursor: pointer;
 		opacity: 0.4;
-	}
-
-	button.edit:focus, button.editing:focus {
-		outline: none;
 	}
 
 #dislikeText {
@@ -116,3 +109,11 @@ img.profileImage {
 	margin-right: -4em;
 	padding-right: 0;
 }
+
+/*#last {
+	position: absolute;
+}
+
+#first {
+	position: absolute;
+}*/

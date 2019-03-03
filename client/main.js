@@ -9,9 +9,11 @@ Template.description.helpers({
 	descAll(){
 		return userDB.find({});
 	},
+
 	isLikeSingle:function(num){
 		return (num <= 1);
 	},
+
 	isDislikeSingle:function(num){
 		return (num <= 1);
 	}
@@ -73,6 +75,8 @@ Template.description.events({
 		var disCount = userDB.findOne({_id:userId}).dislike
 		console.log(userId);
 
+		$('#editUser').modal('show');
+
 		$('#uId').val(userId);
 		$('#backImg').attr('src',userDB.findOne({_id:userId}).img);
 		$('#first').text(userDB.findOne({_id:userId}).firstName);
@@ -99,11 +103,6 @@ Template.addUser.events({
 		var fName = $('#addUser input[name="firstName"]').val();
 		var lName = $('#addUser input[name="lastName"]').val();
 		var image = $('#addUser input[name="imageURL"]').val();
-		var profileImg = $('#addUser input[name="profileImg"]').val();
-
-		if (profileImg = ""){
-			profileImg = "blank-profile.png";
-		}
 
 		if (image == ""){
 			image = "Undertale 2.jpg";
@@ -116,35 +115,61 @@ Template.addUser.events({
 
 		$('#addUser').modal('hide');
 
-		userDB.insert({'firstName':fName, 'lastName':lName, 'img':image, 'prof': profileImg});
+		userDB.insert({'firstName':fName, 'lastName':lName, 'img':image});		
 	},
 });
 
 Template.editUser.events({
 	'click .js-delete'(event, instance){
-		var descID = this._id;
+		var editID = $('#uId').val();
+
+		console.log(editID);		
 
 		$('#editUser').modal('hide');
 
-		$("#" + descID).fadeOut("slow", "swing", function(){
-			userDB.remove({_id: descID});
-		});
+		userDB.remove({_id:editID});
+
+		// $("#" + editID).fadeOut("slow", "swing", function(){
+		// 	userDB.remove({_id:editID});
+		// });
 	},
 
 	'click .js-edit'(event, instance){
-		// var fName = $('#addUser input[name="firstName"]').val();
-		// var lName = $('#addUser input[name="lastName"]').val();
-		// var image = $('#addUser input[name="imageURL"]').val();
-		// var profileImg = $('#addUser input[name="profileImg"]').val();
-
-		$('#editing').modal('handleUpdate');
-
-		//userDB.insert({'firstName':efName, 'lastName':elName, 'img':eimage, 'profileImg': profileImg});
-
+		$('#editing').modal('show');
 	},
 
 	'click .js-saveEdit'(event, instance){
+		var editID = $('#uId').val(); 	
+	 	console.log(editID);
 
+		var eFName = $('#editing input[name="eFirstName"]').val();
+		var eLName = $('#editing input[name="eLastName"]').val();
+		var eImage = $('#editing input[name="eImageURL"]').val();
+		var eProfileImg = $('#editing input[name="profileImg"]').val();
+
+		if (eProfileImg == ""){
+			eProfileImg = "blank-profile.png";
+		} else {
+			eProfileImg = $('#editing input[name="profileImg"]').val();
+		}
+
+		if (eImage == ""){
+			eImage = "Undertale 2.jpg";
+		} else {
+			eImage = $('#editing input[name="eImageURL"]').val();
+		}
+
+		$('#editing').modal('handleUpdate');
+
+		$('#editing input[name="eFirstName"]').val('');
+		$('#editing input[name="eLastName"]').val('');
+		$('#editing input[name="eImageURL"]').val('');
+		$('#editing input[name="profileImg"]').val('');		
+
+		userDB.update({_id: editID}, {$set:{'firstName':eFName, 'lastName':eLName, 'img':eImage, 'prof':eProfileImg}});
+
+		$('#editing').modal('hide');
+		$('#editUser').modal('hide');
 	},
 
 	'click .js-close'(event, instance){

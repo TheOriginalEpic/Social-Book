@@ -26,15 +26,13 @@
 	{{#each descAll}}
 	<div class="col-4">	
 
-		<button class="edit" type="button" data-toggle="modal" data-target="#editUser">
-			<div class="row justify-content-around">
+			<div class="row justify-content-around edit">
 				<div class="col-sm-12">
 					<img class="backImg" src="{{img}}" alt="">
 					
 					<h1 class="text-center defaultColor">{{firstName}} &nbsp; {{lastName}}</h1>
 				</div>
 			</div>
-		</button>
 			
 			<div class="row justify-content-center button-spacing">
 				<div class="col-sm-4 text-center">
@@ -90,9 +88,7 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text" id="basic-addon1">Background Image</span>
 								</div>
-								<input type="text" name="imageURL" class="form-control" placeholder="https://i.kym-cdn.com/entries/icons/original/000/000/091/TrollFace.jpg" aria-label="imageURL" aria-describedby="basic-addon1"><br />
-
-								<input type="file" name="imageURL" class="form-control-file" id="exampleFormControlFile1">
+								<input type="text" name="imageURL" class="form-control" placeholder="https://i.kym-cdn.com/entries/icons/original/000/000/091/TrollFace.jpg" aria-label="imageURL" aria-describedby="basic-addon1"><br />							
 							</div>
 
 							<div class="input-group mb-3">
@@ -136,16 +132,13 @@
 					<input id="uId" type="hidden">
 
 		     	<div class="row d-flex justify-content-end">
-			   		<div id="col-sm-2" class="col-sm-2">
 
-				   		<button type="button" class="editing" data-toggle="modal" data-target="#editing">
-						  	<i class="zmdi zmdi-edit js-edit"><span class="editText">Edit</span></i>
-							</button>   			
+			   		<div id="col-sm-2" class="col-sm-2">
+						  <i class="zmdi zmdi-edit js-edit"><span class="editText">Edit</span></i>  			
 			   		</div>
 
-			   		<div class="col-auto delete">
-			   			<i class="zmdi zmdi-delete js-delete"><span class="deleteText">Delete</span></i>
-			   			
+			   		<div class="col-auto">
+			   			<i id={{_id}} class="zmdi zmdi-delete js-delete"><span class="deleteText">Delete</span></i>			   			
 			   		</div>
 			   	</div>
 
@@ -156,27 +149,15 @@
 			        <img class="profileImage" id="userImg" src="{{prof}}" alt="">
 			      </div>
 
-			      <div class="col">
-							<h1 id="first" class="centered">{{firstName}} &nbsp; </h1>
+			      <div class="col-3">
+							<h1 id="first" class="centered">{{firstName}} &nbsp;</h1>
 							<h1 id="last" class="centered">{{lastName}}</h1>
 
-						<div style="margin-left: 3.5em;">
-							<p id="like"></p>
-							<p id="dislike"></p>
-
-			      	<!-- {{#if isLikeSingle}}
-				      	<p id="like">Like: {{like}}</p>
-			      	{{else}}
-				      	<p id="like">Likes: {{like}}</p>
-			      	{{/if}}
-
-			      	{{#if isDislikeSingle}}
-				      	<p id="dislike">Dislike: {{dislike}}</p>
-			      	{{else}}
-				      	<p id="dislike">Dislikes: {{dislike}}</p>
-			      	{{/if}} -->
-			      </div>
-			      </div>
+							<div style="margin-left: 3.5em;">
+								<p id="like"></p>
+								<p id="dislike"></p>
+				      </div>
+				    </div>
 			    </div>				
 		   	</div>
 	      <div class="modal-footer">
@@ -203,18 +184,14 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon1">Background Image</span>
 										</div>
-										<input type="text" name="eImageURL" class="form-control" placeholder="https://i.kym-cdn.com/entries/icons/original/000/000/091/TrollFace.jpg" aria-label="eImageURL" aria-describedby="basic-addon1"><br />
-
-										<input name="eImageURL" type="file" class="form-control-file" id="exampleFormControlFile1">
+										<input type="text" name="eImageURL" class="form-control" placeholder="https://i.kym-cdn.com/entries/icons/original/000/000/091/TrollFace.jpg" aria-label="eImageURL" aria-describedby="basic-addon1"><br />							
 									</div>
-
+									
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon1">Profile Image</span>
 										</div>
-										<input type="text" name="profileImg" class="form-control" placeholder="https://i.kym-cdn.com/entries/icons/original/000/000/091/TrollFace.jpg" aria-label="profileImg" aria-describedby="basic-addon1"><br />
-
-										<input name="profileImg" type="file" class="form-control-file" id="exampleFormControlFile1">
+										<input type="text" name="profileImg" class="form-control" placeholder="https://i.kym-cdn.com/entries/icons/original/000/000/091/TrollFace.jpg" aria-label="profileImg" aria-describedby="basic-addon1"><br />							
 									</div>
 
 									<div class="input-group mb-3">
